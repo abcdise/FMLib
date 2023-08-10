@@ -9,6 +9,5 @@ int main() {
     testMatlib();
     testCallOption();
     testBlackScholesModel();
-    // testPolynomial();
-    vector<double> x = {0.0, 0.0};
+    testPolynomial();
 }

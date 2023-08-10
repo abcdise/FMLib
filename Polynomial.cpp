@@ -53,6 +53,7 @@ static void testPolynomialFunctions(){
     double final_result_1 = f.evaluate(10.0);
     double final_result_2 = h.evaluate(10.0);
     ASSERT(final_result_1 == final_result_2);
+    ASSERT((final_result_1 - 642.0) == 0);
 }
 
 void testPolynomial(){
