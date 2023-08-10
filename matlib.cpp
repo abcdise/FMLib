@@ -1,6 +1,6 @@
 #include "matlib.h"
 
-#include "geometry.h"
+
 
 const double ROOT_2_PI = sqrt( 2.0 * PI );
 
