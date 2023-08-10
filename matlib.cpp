@@ -1,6 +1,8 @@
 #include "matlib.h"
+#include "stdafx.h"
 
 
+const double PI = M_PI;
 
 const double ROOT_2_PI = sqrt( 2.0 * PI );
 
