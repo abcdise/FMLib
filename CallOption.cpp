@@ -2,6 +2,9 @@
 
 #include "matlib.h"
 
+CallOption::CallOption(): strike(0.0), maturity(0.0){}
+CallOption::CallOption(double s, double m): strike(s), maturity(m){}
+
 double CallOption::payoff(
 		double stockAtMaturity ) const {
     if (stockAtMaturity>strike) {
@@ -36,9 +39,9 @@ double CallOption::price(
 //////////////////////////
 
 static void testCallOptionPrice() {
-    CallOption callOption;
-    callOption.strike = 105.0;
-    callOption.maturity = 2.0;
+    CallOption callOption(105.0, 2.0);
+    // callOption.strike = 105.0;
+    // callOption.maturity = 2.0;
     
     BlackScholesModel bsm;
     bsm.date = 1.0;

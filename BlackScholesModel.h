@@ -4,10 +4,14 @@
 
 class BlackScholesModel {
 public:
+    /* Member variables */
     double stockPrice;
     double volatility;
     double riskFreeRate;
     double date;
+
+    /* Constructor */
+    BlackScholesModel();
 };
 
 
