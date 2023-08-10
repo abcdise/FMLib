@@ -36,11 +36,28 @@ double Polynomial::evaluate(double x) const {
 }
 
 void Polynomial::add(const Polynomial& g){
-    vector<double> y = g.coefficients;
+    auto degree = max(coefficients.size(), g.coefficients.size());
+    vector<double> result_coef(degree, 0.0);
     for (auto i=0; i<coefficients.size(); i++){
-        coefficients[i] += y[i];
+        result_coef[i] += coefficients[i];
     }
+    for (auto i=0; i<g.coefficients.size(); i++){
+        result_coef[i] += g.coefficients[i];
+    }
+    coefficients = result_coef;
 }
+
+Polynomial operator+(Polynomial& f, const Polynomial& g){
+    f.add(g);
+    Polynomial h = f;
+    return h;
+
+}
+
+
+
+
+
 
 static void testPolynomialFunctions(){
     vector<double> coef_x = {1.0, 2.0, 3.0};
@@ -49,9 +66,9 @@ static void testPolynomialFunctions(){
     Polynomial f(coef_x);
     Polynomial g(coef_y);
     Polynomial h(coef_z);
-    f.add(g);
-    double final_result_1 = f.evaluate(10.0);
-    double final_result_2 = h.evaluate(10.0);
+    f = f + g;
+    double final_result_1 = f(10.0);
+    double final_result_2 = h(10.0);
     ASSERT(final_result_1 == final_result_2);
     ASSERT((final_result_1 - 642.0) == 0);
 }
