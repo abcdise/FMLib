@@ -20,12 +20,15 @@ public:
     double operator()(double x) const {
         return evaluate(x);
     };
+
+    Polynomial operator+(const Polynomial& f, const Polynomial g);
+    // Polynomial operator-(const Polynomial& f, const Polynomial g);
+    // Polynomial operator*(const Polynomial& f, const Polynomial g);
+    // Polynomial operator+=(const Polynomial& f, const Polynomial g);
+    Polynomial& operator=(const Polynomial& other);
 };
 
-Polynomial operator+(const Polynomial& f, const Polynomial g);
-Polynomial operator-(const Polynomial& f, const Polynomial g);
-Polynomial operator*(const Polynomial& f, const Polynomial g);
-Polynomial operator+=(const Polynomial& f, const Polynomial g);
+
 
 
 void testPolynomial();
