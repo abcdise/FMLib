@@ -4,14 +4,7 @@
 using namespace std;
 
 
-    // /* Constructor */
-    // Polynomial();
-    // Polynomial(std::vector<double>& c);
-    // Polynomial(double c);
-
-    // /* Member definitions */
-    // double evaluate(double x);
-    // Polynomial add(Polynomial& g);
+/* Constructor */
 
 Polynomial::Polynomial(){
     vector<double> c = {0.0};
@@ -27,6 +20,7 @@ Polynomial::Polynomial(double c){
     coefficients = v;
 }
 
+/* Member function definitions */
 double Polynomial::evaluate(double x) const {
     double sum = 0;
     for (auto i=0; i<coefficients.size(); i++){
@@ -47,10 +41,16 @@ void Polynomial::add(const Polynomial& g){
     coefficients = result_coef;
 }
 
-Polynomial operator+(Polynomial& f, const Polynomial& g){
+/* Overloading +, -, *, +=, -=, *= */
+Polynomial Polynomial::operator+(Polynomial& f, const Polynomial& g){
     f.add(g);
     Polynomial h = f;
     return h;
+}
+
+
+/* Rule of three */
+Polynomial& Polynomial::operator=(const Polynomial& other){
 
 }
 
@@ -58,7 +58,7 @@ Polynomial operator+(Polynomial& f, const Polynomial& g){
 
 
 
-
+/* Unit testing */
 static void testPolynomialFunctions(){
     vector<double> coef_x = {1.0, 2.0, 3.0};
     vector<double> coef_y = {1.0, 2.0, 3.0};
