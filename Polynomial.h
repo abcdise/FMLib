@@ -21,12 +21,14 @@ public:
         return evaluate(x);
     };
 
-    Polynomial operator+(const Polynomial& f, const Polynomial g);
+    
     // Polynomial operator-(const Polynomial& f, const Polynomial g);
     // Polynomial operator*(const Polynomial& f, const Polynomial g);
     // Polynomial operator+=(const Polynomial& f, const Polynomial g);
-    Polynomial& operator=(const Polynomial& other);
+    // Polynomial& operator=(const Polynomial& other);
 };
+
+Polynomial operator+(Polynomial& f, const Polynomial& g);
 
 
 
