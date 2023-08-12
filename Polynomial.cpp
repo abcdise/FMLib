@@ -41,17 +41,20 @@ void Polynomial::add(const Polynomial& g){
     coefficients = result_coef;
 }
 
-/* Overloading +, -, *, +=, -=, *= */
-Polynomial Polynomial::operator+(Polynomial& f, const Polynomial& g){
-    f.add(g);
-    Polynomial h = f;
-    return h;
-}
+
 
 
 /* Rule of three */
 Polynomial& Polynomial::operator=(const Polynomial& other){
+    coefficients = other.coefficients;
+    return *this;
+}
 
+/* Overloading +, -, * */
+Polynomial operator+(Polynomial& f, Polynomial& g){
+    f.add(g);
+    Polynomial h = f;
+    return h;
 }
 
 
