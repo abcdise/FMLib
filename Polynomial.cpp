@@ -44,11 +44,7 @@ void Polynomial::add(const Polynomial& g){
 
 
 
-/* Rule of three */
-Polynomial& Polynomial::operator=(const Polynomial& other){
-    coefficients = other.coefficients;
-    return *this;
-}
+
 
 /* Overloading +, -, * */
 Polynomial operator+(Polynomial& f, Polynomial& g){
