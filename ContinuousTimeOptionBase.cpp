@@ -4,6 +4,6 @@
 
 using namespace std;
 
-double ContinuousTimeOptionBase::price(const BlackScholesModel& bsm){
-    
+double ContinuousTimeOptionBase::price(const BlackScholesModel& bsm) const {
+    return 0;
 }
