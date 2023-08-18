@@ -17,7 +17,7 @@ public:
     void setStrike(double s) {
         this->strike = s;
     }
-    double price(const BlackScholesModel& bsm) const{}
+    double price(const BlackScholesModel& bsm) const;
 private:
     double maturity;
     double strike;
