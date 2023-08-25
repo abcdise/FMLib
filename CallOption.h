@@ -2,13 +2,10 @@
 
 #include "stdafx.h"
 #include "BlackScholesModel.h"
+#include "PathIndependentOption.h"
 
-class CallOption {
+class CallOption: public PathIndependentOption {
 public:
-    /* Members */
-    double strike;
-    double maturity;
-
     /* Constructor*/
     CallOption();
     CallOption(double s, double m);

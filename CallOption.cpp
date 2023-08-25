@@ -2,13 +2,11 @@
 
 #include "matlib.h"
 
-CallOption::CallOption(): strike(0.0), maturity(0.0){}
-CallOption::CallOption(double s, double m): strike(s), maturity(m){}
 
 double CallOption::payoff(
 		double stockAtMaturity ) const {
-    if (stockAtMaturity>strike) {
-        return stockAtMaturity-strike;
+    if (stockAtMaturity>getStrike()) {
+        return stockAtMaturity-getStrike();
     } else {
         return 0.0;
     }
@@ -16,10 +14,10 @@ double CallOption::payoff(
 double CallOption::price( 
         const BlackScholesModel& bsm ) const {
     double S = bsm.stockPrice;
-    double K = strike;
+    double K = getStrike();
     double sigma = bsm.volatility;
     double r = bsm.riskFreeRate;
-    double T = maturity - bsm.date;
+    double T = getMaturity() - bsm.date;
 
     double numerator =
 	    log( S/K ) + ( r + sigma*sigma*0.5)*T;
@@ -39,9 +37,9 @@ double CallOption::price(
 //////////////////////////
 
 static void testCallOptionPrice() {
-    CallOption callOption(105.0, 2.0);
-    // callOption.strike = 105.0;
-    // callOption.maturity = 2.0;
+    CallOption callOption;
+    callOption.setStrike(105.0);
+    callOption.setMaturity(2.0);
     
     BlackScholesModel bsm;
     bsm.date = 1.0;
