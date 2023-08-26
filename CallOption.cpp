@@ -1,5 +1,4 @@
 #include "CallOption.h"
-
 #include "matlib.h"
 
 
