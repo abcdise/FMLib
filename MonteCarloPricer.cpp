@@ -38,8 +38,8 @@ static void testPriceCallOption(){
     rng("default");
 
     CallOption c;
-    c.strike = 110;
-    c.maturity = 2;
+    c.setStrike(110.0);
+    c.setMaturity(2);
 
     BlackScholesModel m;
     m.volatility = 0.1;

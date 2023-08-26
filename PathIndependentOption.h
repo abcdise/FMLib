@@ -13,12 +13,12 @@ class PathIndependentOption :
 public:
   /*  A virtual destructor */
   virtual ~PathIndependentOption() {}
+  
   /*  Returns the payoff at maturity */
   virtual double payoff(double endStockPrice) const
       = 0;
   /*  Compute the payoff from a price path */
-  double payoff(
-    const std::vector<double>& stockPrices ) const {
+  double payoff(const std::vector<double>& stockPrices) const {
       return payoff(stockPrices.back());
   }
   /*  Is the option path dependent? */

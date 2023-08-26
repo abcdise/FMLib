@@ -23,6 +23,7 @@ public:
 
     /* Price the option using Black Scholes Model */
     double price(const BlackScholesModel& bsm) const;
+    
 private:
     double maturity;
     double strike;

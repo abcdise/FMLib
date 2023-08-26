@@ -10,7 +10,7 @@ public:
     virtual double getMaturity() const = 0;
 
     /* Payoff function */
-    virtual double payoff(std::vector<double>& stockPrices) const = 0;
+    virtual double payoff(const std::vector<double>& stockPrices) const = 0;
 
     /* Is the option path-dependent? */
     virtual bool isPathDependent() const = 0;
