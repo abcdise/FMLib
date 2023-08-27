@@ -255,6 +255,17 @@ double norminv( double x ) {
 	}
 }
 
+/* Integration */
+double integrate(function<double(double)> f, double a, double b, int nSteps){
+    double total = 0.0;
+    double h = (b - a) / nSteps;
+    for (int i = 0; i<nSteps; i++){
+        double x = a + i * h + 0.5 * h;
+        total += h * f(x);
+    }
+    return total;
+}
+
 
 
 
@@ -334,6 +345,18 @@ static void testPrctile() {
 	ASSERT_APPROX_EQUAL( prctile( v, 62.0 ), 6.2, 0.001 );
 }
 
+static void testIntegral(){
+    class Sin{
+    public: 
+        double operator()(double x){
+            return sin(x);
+        }
+    };
+    Sin integrand;
+    double value = integrate(integrand, 0, 1, 1000);
+    ASSERT_APPROX_EQUAL(-cos(1.0)+cos(0.0), value, 0.01);
+}
+
 
 void testMatlib() {
     TEST( testLinspace );
@@ -346,4 +369,5 @@ void testMatlib() {
     TEST( testNormInv );
     TEST( testNormCdf );
     TEST( testPrctile );
+    TEST ( testIntegral );
 }
