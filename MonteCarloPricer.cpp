@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "matlib.h"
 #include "MonteCarloPricer.h"
 #include "CallOption.h"
 

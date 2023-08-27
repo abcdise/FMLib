@@ -354,7 +354,7 @@ static void testIntegral(){
     };
     Sin integrand;
     double value = integrate(integrand, 0, 1, 1000);
-    ASSERT_APPROX_EQUAL(-cos(1.0)+cos(0.0), value, 0.01);
+    ASSERT_APPROX_EQUAL(-cos(1.0)+cos(0.1), value, 0.01);
 }
 
 
