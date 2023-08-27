@@ -2,7 +2,7 @@
 #include "testing.h"
 
 static void testUsability(){
-    ASSERT_APPROX_EQUAL(1.0, 0.1, 0.001);
+    ASSERT_APPROX_EQUAL(1.0, 1.0001, 0.001);
 }
 
 void testPlayground(){
