@@ -4,6 +4,7 @@
 #include "BlackScholesModel.h"
 #include "Polynomial.h"
 #include "UpAndOutOption.h"
+#include "Playground.h"
 
 
 using namespace std;
@@ -14,4 +15,7 @@ int main() {
     testBlackScholesModel();
     testPolynomial();
     testUpAndOutOption();
+
+
+    testPlayground();
 }
