@@ -23,6 +23,9 @@ public:
 
     /* Price the option using Black Scholes Model */
     double price(const BlackScholesModel& bsm) const;
+
+    /* Compute the delta */
+    double delta(double stockPrice, BlackScholesModel& bsm) const;
     
 private:
     double maturity;

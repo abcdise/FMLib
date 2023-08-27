@@ -266,6 +266,10 @@ double integrate(function<double(double)> f, double a, double b, int nSteps){
     return total;
 }
 
+/* Differentiation */
+double differentiate(function<double(double)> f, double x, double h = pow(10.0, -6)){
+    return (f(x+h) - f(x-h)) / (2 * h);
+}
 
 
 
@@ -357,6 +361,19 @@ static void testIntegral(){
     ASSERT_APPROX_EQUAL(-cos(1.0)+cos(0.0), value, 0.01);
 }
 
+static void testDifferentiate() {
+    class exponential{
+    public:
+        double operator()(double x){
+            return exp(x);
+        }
+    };
+    exponential f;
+    double x = 2.0;
+    double dy_dx = differentiate(f, x);
+    ASSERT_APPROX_EQUAL(dy_dx, f(x), 0.01);
+}
+
 
 void testMatlib() {
     TEST( testLinspace );
@@ -370,4 +387,5 @@ void testMatlib() {
     TEST( testNormCdf );
     TEST( testPrctile );
     TEST ( testIntegral );
+    TEST ( testDifferentiate );
 }

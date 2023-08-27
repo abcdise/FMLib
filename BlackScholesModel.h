@@ -15,11 +15,12 @@ public:
     BlackScholesModel();
 
     /* Member functions */
+
     std::vector<double> generatePricePath(double toDate, int nSteps) const;
     std::vector<double> generateRiskNeutralPricePath(double toDate, int nSteps) const;
 
 private:
-    /* Member functions*/
+    /* Member functions */
     std::vector<double> generateRiskNeutralPricePath(double toDate, int nSteps, double drift) const;
 };
 
