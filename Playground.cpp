@@ -6,5 +6,6 @@ static void testUsability(){
 }
 
 void testPlayground(){
+    setDebugEnabled(true);
     TEST(testUsability);
 }

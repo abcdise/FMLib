@@ -37,7 +37,7 @@ static void testKnockout(){
     vector<double> path({0.0, 1.0, 2.0, 3.0, 4.0});
     UpAndOutOption o;
     o.setBarrier(5.0);
-    ASSERT_APPROX_EQUAL(o.knockout(path), 0.0, 0.0);
+    ASSERT_APPROX_EQUAL(o.barrierActivated(path), 0.0, 0.0);
 }
 
 void testUpAndOutOption(){
