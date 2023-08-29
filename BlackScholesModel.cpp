@@ -10,10 +10,6 @@ BlackScholesModel::BlackScholesModel(): stockPrice(0.0), volatility(0.0), riskFr
 vector<double> BlackScholesModel::generateRiskNeutralPricePath(double toDate, int nSteps, double drift) const {
     vector<double> path(nSteps, 0.0);
     vector<double> epsilon = randn(nSteps);
-    /* To delete */
-    for (int i = 0; i<nSteps; i++){
-        cout << epsilon[i] << endl;
-    }
     double dt = (toDate - date) / nSteps;
     double a = (drift - volatility * volatility * 0.5) * dt;
     double b = volatility * sqrt(dt);

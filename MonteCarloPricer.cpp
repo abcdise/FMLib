@@ -17,6 +17,7 @@ MonteCarloPricer::MonteCarloPricer(): nScenarios(10000) {
 */
 
 double MonteCarloPricer::price(const ContinuousTimeOption& o, const BlackScholesModel& model){
+    rng("default");
     double total = 0.0;
     for (int i=0; i<nScenarios; i++){
         vector<double> path=model.generateRiskNeutralPricePath(o.getMaturity(), 1);
