@@ -15,7 +15,5 @@ int main() {
     testBlackScholesModel();
     testPolynomial();
     testUpAndOutOption();
-
-
     testPlayground();
 }

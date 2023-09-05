@@ -19,5 +19,4 @@ public:
     virtual double price(const BlackScholesModel& model) = 0;
     /* Create a portfolio */
     static std::shared_ptr<Portfolio> newInstance();
-
 };
