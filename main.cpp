@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "matlib.h"
+#include "Portfolio.h"
 #include "CallOption.h"
 #include "BlackScholesModel.h"
 #include "Polynomial.h"
@@ -16,4 +17,5 @@ int main() {
     testPolynomial();
     testUpAndOutOption();
     testPlayground();
+    testPortfolio();
 }

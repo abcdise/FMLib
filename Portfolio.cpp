@@ -1,4 +1,7 @@
 #include "Portfolio.h"
+#include "CallOption.h"
+#include "PutOption.h"
+
 using namespace std;
 
 /* Implication class */
@@ -17,29 +20,54 @@ int PortfolioImpl::size() const {
     return quantities.size();
 }
  
-int PortfolioImpl::add( double quantity,
-            shared_ptr<Priceable> security ) {
-    quantities.push_back( quantity );
+int PortfolioImpl::add(double quantity, shared_ptr<Priceable> security ) {
+    quantities.push_back(quantity);
     securities.push_back( security );
     return quantities.size();
 }
  
-double PortfolioImpl::price(
-        const BlackScholesModel& model ) const {
+double PortfolioImpl::price(const BlackScholesModel& model) const {
     double ret = 0;
     int n = size();
     for (int i=0; i<n; i++) {
-        ret += quantities[i]
-               * securities[i]->price( model );
+        ret += quantities[i] * securities[i]->price(model);
     }
     return ret;
 }
-void PortfolioImpl::setQuantity( int index,
-        double quantity ) {
+void PortfolioImpl::setQuantity(int index, double quantity) {
     quantities[index] = quantity;
 }
 
 shared_ptr<Portfolio> Portfolio::newInstance() {
     shared_ptr<Portfolio> ret = make_shared<PortfolioImpl>();
     return ret;
+}
+
+
+/* Testing */
+
+static void testPutCallParity() {
+    shared_ptr<Portfolio> portfolio = Portfolio::newInstance();
+    shared_ptr<CallOption> c = make_shared<CallOption>();
+    c->setStrike(110.0);
+    c->setMaturity(1.0);
+    shared_ptr<PutOption> p = make_shared<PutOption>();
+    p->setStrike(110.0);
+    p->setMaturity(1.0);
+
+    portfolio->add(100, c);
+    portfolio->add(-100, p);
+    BlackScholesModel bsm;
+    bsm.volatility = 0.1;
+    bsm.stockPrice = 100.0;
+    bsm.riskFreeRate = 0;
+
+    double expected = bsm.stockPrice - c->getStrike();
+    double portfolioPrice = portfolio ->price(bsm);
+
+    ASSERT_APPROX_EQUAL(100*expected, portfolioPrice, 0.001);
+}
+
+void testPortfolio() {
+    TEST(testPutCallParity);
 }

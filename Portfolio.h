@@ -18,3 +18,6 @@ public:
     /*  Creates a Portfolio */
     static std::shared_ptr<Portfolio> newInstance();
 };
+
+/* Testing */
+void testPortfolio();

@@ -6,11 +6,8 @@
  
 class CallOption : public PathIndependentOption {
 public:
- 
-    double payoff( double stockAtMaturity ) const;
- 
-    double price( const BlackScholesModel& bsm )
-        const;
+    double payoff(double stockAtMaturity) const;
+    double price(const BlackScholesModel& bsm) const;
 };
  
 void testCallOption();

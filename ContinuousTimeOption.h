@@ -1,7 +1,8 @@
 #pragma once
+#include "Priceable.h"
 #include "stdafx.h"
 
-class ContinuousTimeOption{
+class ContinuousTimeOption: public Priceable {
 public:
     /* virtual destructor */
     virtual ~ContinuousTimeOption(){};

@@ -17,7 +17,6 @@ double CallOption::price(const BlackScholesModel& bsm) const {
     double sigma = bsm.volatility;
     double r = bsm.riskFreeRate;
     double T = getMaturity() - bsm.date;
-
     double numerator =
 	    log( S/K ) + ( r + sigma*sigma*0.5)*T;
     double denominator = sigma * sqrt(T );
