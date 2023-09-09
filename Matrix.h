@@ -40,6 +40,15 @@ public:
         return endPointer;
     }
 
+    /* Operator overloading */
+    Matrix operator-() const;
+    double& operator()(int i, int j){
+        return data[offset(i, j)];
+    }
+    const double& operator()(int i, int j) const{
+        return data[offset(i, j)];
+    }
+
 private:
     int nrows;
     int ncols;
@@ -49,3 +58,11 @@ private:
 
 /* Operator overloading */
 Matrix operator+(const Matrix& x, const Matrix& y);
+Matrix operator+(const Matrix& x, double y);
+Matrix operator+(double x, const Matrix& y);
+Matrix operator-(const Matrix& x, const Matrix& y);
+Matrix operator-(const Matrix& x, double y);
+Matrix operator-(double x, const Matrix& y);
+Matrix operator*(const Matrix& x, const Matrix& y);
+Matrix operator*(const Matrix& x, double y);
+Matrix operator*(double x, const Matrix& y);
