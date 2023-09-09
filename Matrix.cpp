@@ -1,6 +1,55 @@
 #include "Matrix.h"
+#include "testing.h"
+
+using namespace std;
 
 /* Constructor */
+Matrix::Matrix( string s ) {
+    char separator;
+    // read once to compute the size
+    nrows = 1;
+    ncols = 1;
+    int n = s.size();
+    for (int i=0; i<n; i++) {
+        if (s[i]==';') {
+            nrows++;
+        }
+        if (nrows==1 && s[i]==',') {
+            ncols++;
+        }
+    }
+ 
+    // now check we can read the string
+    stringstream ss1;
+    ss1.str(s);
+    for (int i=0; i<nrows; i++) {
+        for (int j=0; j<ncols; j++) {
+            double ignored;
+            ss1 >> ignored;
+            ss1 >> separator;
+            if (j==ncols-1 && i<nrows-1) {
+                ASSERT( separator==';' );
+            } else if (j<ncols-1) {
+                ASSERT( separator==',' );
+            }
+        }
+    }
+ 
+    // allocate memory now we know nothing will go wrong
+    stringstream ss;
+    ss.str(s);
+    int size = nrows*ncols;
+    data = new double[size];
+    endPointer = data+size;
+    for (int i=0; i<nrows; i++) {
+        for (int j=0; j<ncols; j++) {
+            double* p = begin() + offset( i,j );
+            ss >> (*p);
+            ss >> separator;
+        }
+    }
+}
+
 Matrix::Matrix(int nrows, int ncols, bool zeros): nrows(nrows), ncols(ncols) {
     int size = nrows * ncols;
     data = new double[size];
@@ -9,6 +58,17 @@ Matrix::Matrix(int nrows, int ncols, bool zeros): nrows(nrows), ncols(ncols) {
         memset(data, 0.0, sizeof(double)*size);
     }
 }
+
+/* Methods */
+
+void Matrix::assign(const Matrix& other){
+        nrows = other.nRows();
+        ncols = other.nCols();
+        int size = nrows * ncols;
+        data = new double[size];
+        endPointer = data + size;
+        memcpy(data, other.data, sizeof(double)*size);
+    }
 
 /* Operator overloading within the class */
 Matrix Matrix::operator-() const {
@@ -92,3 +152,34 @@ Matrix operator * (const Matrix& x, double y){
 Matrix operator * (double x, const Matrix& y){
     return y * x;
 }
+
+bool operator == (const Matrix& x, const Matrix& y){
+    if (x.nCols() != y.nCols() | x.nRows() != y.nRows()){
+        return false;
+    } else {
+        for (int i=0; i<x.nRows(); i++){
+            for (int j=0; j<x.nCols(); j++){
+                if (x(i, j) != y(i, j)){
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+
+
+
+/* ===== Unit Testing ===== */
+static void testMatrixConstructor(){
+    Matrix X("1, 0, 0; 0, 1, 0; 0, 0, 1");
+    ASSERT(X.nCols() == 3);
+    ASSERT(X.nRows() == 3);
+    ASSERT(X+X==2*X);
+}
+
+void testMatrix(){
+    TEST(testMatrixConstructor);
+}
+

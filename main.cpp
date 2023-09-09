@@ -5,6 +5,7 @@
 #include "BlackScholesModel.h"
 #include "Polynomial.h"
 #include "UpAndOutOption.h"
+#include "Matrix.h"
 #include "Playground.h"
 
 
@@ -18,4 +19,5 @@ int main() {
     testUpAndOutOption();
     testPlayground();
     testPortfolio();
+    testMatrix();
 }
