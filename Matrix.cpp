@@ -1,6 +1,7 @@
 #include "Matrix.h"
 #include "testing.h"
 
+
 using namespace std;
 
 /* Constructor */
@@ -69,6 +70,29 @@ void Matrix::assign(const Matrix& other){
         endPointer = data + size;
         memcpy(data, other.data, sizeof(double)*size);
     }
+
+Matrix Matrix::choleskyDecomposition(){
+    ASSERT(ncols == nrows);
+    Matrix ret(nrows, ncols, true);
+    double* dest = ret.data;
+    for (int i=0; i<ncols; i++){
+        for (int j=0; i<nrows; j++){
+            double summand = 0;
+            if (i == j){
+                for (int k=0; k<j; k++){
+                    summand += pow(ret(j, k), 2);
+                }
+                ret(i, j) = sqrt(get(i, j) - summand); 
+            } else if (i < j){
+                for (int k=0; k<j; k++){
+                    summand += ret(i, k) * ret(j, k);
+                }
+                ret(i, j) = 1 / ret(j, j) * (get(i, j) - summand);
+            }
+        }
+    }
+    return ret;
+}
 
 /* Operator overloading within the class */
 Matrix Matrix::operator-() const {

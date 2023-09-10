@@ -46,6 +46,8 @@ public:
         return endPointer;
     }
 
+    Matrix choleskyDecomposition();
+
     /* Rule of three - assign method */
     void assign(const Matrix& other);
 

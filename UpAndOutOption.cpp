@@ -2,6 +2,7 @@
 #include "UpAndOutOption.h"
 #include <vector>
 #include "testing.h"
+#include "Matrix.h"
 
 using namespace std;
 
